@@ -1,0 +1,28 @@
+name: SimpleItemLottery2
+version: 0.0.1
+description: Prevents players from mining too much minerals in specific worlds.
+author: Saren
+website: https://github.com/Saren-Arterius/SimpleItemLottery2
+ 
+main: net.wtako.SimpleItemLottery2.Main
+database: true
+
+commands:
+    silot2:
+        description: Basic command.
+        usage: Type /<command> to use this plugin.
+        permission: SILOT2.admin
+        permission-message: You are not permitted to use this plugin.
+
+permissions:
+    SILOT2.*:
+        description: Gives access to all SimpleItemLottery2 commands.
+        default: op
+    SILOT2.admin:
+        description: Gives access to all SimpleItemLottery2 administrative commands.
+        children:
+            SILOT2.reload: true
+        default: op
+    SILOT2.reload:
+        description: Reloads the plugin.
+        default: op

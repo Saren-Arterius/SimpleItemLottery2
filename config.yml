@@ -1,0 +1,9 @@
+variable:
+    list:
+        RowsPerPage: 8
+    make:
+        TicketItemType: PAPER
+        Enchant: Yes
+
+system:
+    PluginVersion: 0.0.1
