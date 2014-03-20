@@ -2,8 +2,8 @@ variable:
     add:
         # Do this in order to avoid OP from setting a value too high
         # So that the value must be >= 0 AND <= 1000
-        maxProb: 1000
-        maxClassCount: 100
+        MaxProb: 1000
+        MaxClassCount: 100
     list:
         RowsPerPage: 8
     make:
