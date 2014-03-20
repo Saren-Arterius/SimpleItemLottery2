@@ -39,7 +39,7 @@ public enum Lang {
 
     HELP_ADD(
             "help-add",
-            "&eHold an item&f on hand, and type &a/silot2 add &f<&cprize class&f> <&cprobabilty&f> [&cmoney amount&f] to add it into database. &eIf money amount is givin, &ccash prize&e will be added instead."),
+            "&eHold an item&f on hand, and type &a/silot2 add &f<&cprize class&f> <&cprobability&f> [&cmoney amount&f] to add it into database. &eIf money amount is given, &ccash prize&e will be added instead."),
     HELP_LIST("help-list", "Type &a/silot2 list &f[&cprize class&f] [&cpage&f] to view prize list."),
     HELP_MAKE("help-make", "Type &a/silot2 make &f<&cprize class&f> [&camount&f] to make lottery tickets."),
     HELP_DELETE("help-delete", "Type &a/silot2 delete &f(&cid 1&f, &cid 2&f, &cid 3&f...) to delete prize rows."),
