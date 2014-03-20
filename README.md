@@ -52,7 +52,8 @@ Permissions
 
 Examples
 ========
-You are OP. 
+You are an OP. 
+-----------
 
 Adding prizes
 -----------
@@ -68,8 +69,32 @@ making it more difficult to get your super awesome sword.
 
 Got some even more rarer armors, and you want them to be prizes? 
 Type **/silot2 add 3 20** to add them to a even more higher class prize list!
+There is a hard limit of classes and probability number of 2147483647 which is 2^31 - 1.
+You can change the soft limit in config.yml.
 
 Making lottery tickets
 -----------
+Type **/silot2 make 1 16** to make 16 * class 1 lottery tickets. 
+You can consider selling them in regular shops, or give them to newcomers.
 
+Type **/silot2 make 2** to make a class 2 lottery tickets. 
+Consider selling them in higher class shop or giving them out as event prizes!
 
+Type **/silot2 make 3** to make a class 3 lottery tickets. 
+Consider letting them be one of the drops of a boss mob.
+
+Deleting prizes
+-----------
+You found the super awesome sword not appropriate in a class 2 prize list, let's delete it.
+You know that it's a class 2 prize, but you apparently don't know which row ID represents the sword.
+First, type **/silot2 list 2** to locate what the sword's row ID is, 
+then you type **/silot2 delete <row ID>** to delete it from the list.
+
+You are a Player. 
+-----------
+
+Using tickets
+-----------
+You bought some tickets from an admin shop, or you just got them in an event.
+The only thing you have to do now is to use them.
+Trust me, it's very simple to use, you just right click on them and see what you got.
