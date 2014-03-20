@@ -20,7 +20,7 @@ Feature
 
 Commands
 ========
-* **/silot2 add <prize class> <probabilty> [money amount]** - Hold an item on hand, and type the command to add it as prize into database. If money amount is givin, cash prize will be added instead.
+* **/silot2 add <prize class> <probability> [money amount]** - Hold an item on hand, and type the command to add it as prize into database. If money amount is given, cash prize will be added instead.
 * **/silot2 list [prize class default=1] [page default=1]** - Views prize list.
 * **/silot2 make <prize class default=1> [ticket amount default=1]** - Makes lottery tickets.
 * **/silot2 delete (id 1, id 2, id 3...)** - Deletes prize rows from database.
@@ -75,7 +75,7 @@ Making lottery tickets
 -----------
 * Type **/silot2 make 1 16** to make 16 * class 1 lottery tickets. You can consider selling them in regular shops, or give them to newcomers.
 
-* Type **/silot2 make 2** to make a class 2 lottery tickets. Consider selling them in higher class shop or giving them out as event prizes!
+* Type **/silot2 make 2** to make a class 2 lottery tickets. Consider selling them in higher class shop or giveng them out as event prizes!
 
 * Type **/silot2 make 3** to make a class 3 lottery tickets. Consider letting them be one of the drops of a boss mob.
 
