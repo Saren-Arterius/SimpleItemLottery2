@@ -1,6 +1,8 @@
 SimpleItemLottery2
 ==================
+<p align="center">
 ![Logo](https://raw.githubusercontent.com/Saren-Arterius/SimpleItemLottery2/master/ticket.png)
+</p>
 
 Craftbukkit plugin. Lottery tickets to item prizes or cash prizes. Supports item meta.
 
