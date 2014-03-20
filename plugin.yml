@@ -11,7 +11,7 @@ softdepend: [Vault]
 commands:
     silot2:
         description: Basic command.
-        usage: Type /<command> to use this plugin.
+        usage: Type /<command> help to get help.
         permission: SILOT2.use
         permission-message: You are not permitted to use this plugin.
 

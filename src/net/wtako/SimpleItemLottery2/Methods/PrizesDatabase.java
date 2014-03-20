@@ -71,6 +71,10 @@ public class PrizesDatabase extends Database {
     }
 
     public static boolean addCashPrize(int moneyAmount, int prizeClass, int prob, Player player) throws SQLException {
+        if (!Main.getInstance().getConfig().getBoolean("system.VaultSupport")) {
+            player.sendMessage(Lang.ECON_NOT_SUPPORTED.toString());
+            return false;
+        }
         if (moneyAmount < 1) {
             player.sendMessage(Lang.MONEY_ERROR.toString());
             return false;
