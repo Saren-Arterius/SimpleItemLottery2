@@ -11,11 +11,16 @@ import org.bukkit.entity.Player;
 public class ArgAdd {
 
     public ArgAdd(CommandSender sender, String[] args) {
+        if (!sender.hasPermission("SILOT2.admin")) {
+            sender.sendMessage(Lang.NO_PERMISSION_COMMAND.toString());
+            return;
+        }
         if (args.length >= 4) {
             try {
-                PrizesDatabase.addItem(Integer.parseInt(args[3]), Integer.parseInt(args[1]), Integer.parseInt(args[2]),
-                        (Player) sender);
-                sender.sendMessage("success");
+                if (PrizesDatabase.addCashPrize(Integer.parseInt(args[3]), Integer.parseInt(args[1]),
+                        Integer.parseInt(args[2]), (Player) sender)) {
+                    sender.sendMessage(Lang.ADD_SUCCESS.toString());
+                }
             } catch (final NumberFormatException e) {
                 sender.sendMessage(Lang.HELP_ADD.toString());
             } catch (final SQLException e) {
@@ -24,8 +29,9 @@ public class ArgAdd {
             }
         } else if (args.length == 3) {
             try {
-                PrizesDatabase.addItem(((Player) sender), Integer.parseInt(args[1]), Integer.parseInt(args[2]));
-                sender.sendMessage("success");
+                if (PrizesDatabase.addItem(((Player) sender), Integer.parseInt(args[1]), Integer.parseInt(args[2]))) {
+                    sender.sendMessage(Lang.ADD_SUCCESS.toString());
+                }
             } catch (final NumberFormatException e) {
                 sender.sendMessage(Lang.HELP_ADD.toString());
             } catch (final SQLException e) {

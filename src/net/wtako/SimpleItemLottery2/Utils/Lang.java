@@ -12,27 +12,29 @@ public enum Lang {
 
     TITLE("title", "[SILOT2]"),
 
+    TABLE_LIST("table-list", "Prize list:"),
     LIST_FORMAT1("list-format1", "{0}. {1} - {2} x <{3}>({4})"),
     LIST_FORMAT2("list-format2", "Class: {1}, Prob: {0}, Time: {2}"),
-    PAGE_NUMBER("page-number", "Page {0}/{1}"),
+    PAGE_NUMBER("page-number", "Page: {0}/{1}"),
     MONEY_SIGN("money-sign", "$"),
     LOTTERY_TICKET("lottery-ticket", "Lottery ticket"),
     LOTTERY_TICKET_DISPLAY_NAME("lottery-ticket-display-name", "Class {0} lottery ticket"),
     LOTTERY_TICKET_CLASS("lottery-ticket-class", "This is a class {0} lottery ticket."),
     LOTTERY_TICKET_USAGE("lottery-ticket-usage", "Right click on it to draw."),
-    
-    YOU_WON_THIS("you-won-this", "You won {0} x <{1}>({2})!"),
+
+    YOU_WON_THIS("you-won-this", "You won {0} x {1}!"),
+    YOU_WON_THIS_DISPLAYNAME("you-won-this-displayname", "You won {0} x <{1}>({2})!"),
+    YOU_WON_MONEY("you-won-money", "You won ${0}!"),
 
     ADD_SUCCESS("add-success", "Successfully added prize."),
     MAKE_SUCCESS("make-success", "Successfully made ticket(s)."),
-    DELETE_SUCCESS("delete-success", "Successfully deleted row {0}."),
     MULTIPLE_DELETE_SUCCESS("multiple-delete-success", "Successfully deleted all valid rows."),
 
     NO_PRIZE("no-prize", "&eCurrently no prize is added to database."),
     NO_PRIZE_FROM_TICKET("no-prize-from-ticket", "There is still no prize for this class of ticket yet."),
-    CANNOT_FIND_ROW("cannot-find-row", "&cCould not find row ID {0}."),
     CANNOT_ADD_AIR("cannot-add-air", "&cYou cant add air as prize!"),
     MONEY_ERROR("money-error", "&cCash prize's amount must be greater than 1."),
+    VALUE_ERROR("value-error", "&cValue {0} must be less or equal to {1}."),
 
     HELP_ADD(
             "help-add",
@@ -44,7 +46,12 @@ public enum Lang {
 
     PLUGIN_RELOADED("plugin-reloaded", "&aPlugin reloaded."),
     DB_EXCEPTION("db-exception", "&4A database error occured! Please contact server administrators."),
-    NO_PERMISSION_COMMAND("no-permission-command", "&cYou are not allowed to use this command.");
+    ERROR_HOOKING("error-hooking", "&4Error in hooking into {0}! Please contact server administrators."),
+    UNKNOWN_ERROR("unknown-error", "&4Unknown Error! Please contact server administrators."),
+    ECON_NOT_SUPPORTED("econ-not-supported", "&eEconomy system is currently not supported set in config.yml"),
+    NO_PERMISSION_COMMAND("no-permission-command", "&cYou are not allowed to use this command."),
+    NO_PERMISSION_DO("no-permission-do", "&cYou are not allowed to do this."),
+    NO_PERMISSION_CLASS("no-permission-class", "&cYou are not allowed to use lottery tickets of this class.");
 
     private String                   path;
     private String                   def;

@@ -17,21 +17,31 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class ArgMake {
 
     public ArgMake(CommandSender sender, String[] args) {
+        if (!sender.hasPermission("SILOT2.admin")) {
+            sender.sendMessage(Lang.NO_PERMISSION_COMMAND.toString());
+            return;
+        }
         try {
             if (args.length >= 2) {
-                int prizeClass = Integer.parseInt(args[1]);
+                final int prizeClass = Integer.parseInt(args[1]);
+                if (prizeClass < 0 || prizeClass > Main.getInstance().getConfig().getInt("variable.add.MaxClassCount")) {
+                    sender.sendMessage(MessageFormat.format(Lang.VALUE_ERROR.toString(), "prize class", Main
+                            .getInstance().getConfig().getInt("variable.add.MaxClassCount")));
+                    return;
+                }
                 final String itemTypeRequiredString = Main.getInstance().getConfig()
                         .getString("variable.make.TicketItemType");
                 final Material itemTypeRequired = Material.getMaterial(itemTypeRequiredString.toUpperCase());
                 final ItemStack lotteryTickets = new ItemStack(itemTypeRequired, 1);
-                ItemMeta lotteryTicketMeta = lotteryTickets.getItemMeta();
-                List<String> lores = new ArrayList<String>();
+                final ItemMeta lotteryTicketMeta = lotteryTickets.getItemMeta();
+                final List<String> lores = new ArrayList<String>();
                 lores.add(Lang.LOTTERY_TICKET.toString());
                 lores.add(MessageFormat.format("Class: {0}", prizeClass));
                 lores.add(MessageFormat.format(Lang.LOTTERY_TICKET_CLASS.toString(), prizeClass));
                 lores.add(Lang.LOTTERY_TICKET_USAGE.toString());
                 lotteryTicketMeta.setLore(lores);
-                lotteryTicketMeta.setDisplayName(MessageFormat.format(Lang.LOTTERY_TICKET_DISPLAY_NAME.toString(), prizeClass));
+                lotteryTicketMeta.setDisplayName(MessageFormat.format(Lang.LOTTERY_TICKET_DISPLAY_NAME.toString(),
+                        prizeClass));
                 lotteryTickets.setItemMeta(lotteryTicketMeta);
                 if (args.length >= 3) {
                     Integer amount;

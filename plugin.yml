@@ -11,7 +11,7 @@ commands:
     silot2:
         description: Basic command.
         usage: Type /<command> to use this plugin.
-        permission: SILOT2.admin
+        permission: SILOT2.use
         permission-message: You are not permitted to use this plugin.
 
 permissions:
@@ -22,7 +22,19 @@ permissions:
         description: Gives access to all SimpleItemLottery2 administrative commands.
         children:
             SILOT2.reload: true
+            SILOT2.list: true
+            SILOT2.use: true
+            SILOT2.class.*: true
         default: op
     SILOT2.reload:
         description: Reloads the plugin.
         default: op
+    SILOT2.list:
+        description: Players with this permission can list all the prizes.
+        default: op
+    SILOT2.use:
+        description: Gives access to use lottery ticket.
+        default: true
+    SILOT2.class.*:
+        description: Gives access to use class X lottery ticket.
+        default: true

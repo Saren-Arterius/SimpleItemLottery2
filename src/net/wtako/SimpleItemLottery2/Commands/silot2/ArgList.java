@@ -10,6 +10,10 @@ import org.bukkit.command.CommandSender;
 public class ArgList {
 
     public ArgList(CommandSender sender, String[] args) {
+        if (!sender.hasPermission("SILOT2.list")) {
+            sender.sendMessage(Lang.NO_PERMISSION_COMMAND.toString());
+            return;
+        }
         if (args.length >= 3) {
             Integer page;
             try {
