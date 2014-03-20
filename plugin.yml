@@ -6,6 +6,7 @@ website: https://github.com/Saren-Arterius/SimpleItemLottery2
  
 main: net.wtako.SimpleItemLottery2.Main
 database: true
+softdepend: [Vault]
 
 commands:
     silot2:
