@@ -12,4 +12,4 @@ variable:
 
 system:
     PluginVersion: 0.0.1
-    VaultSupport: Yes
+    VaultSupport: No

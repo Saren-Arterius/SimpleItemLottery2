@@ -1,7 +1,10 @@
 package net.wtako.SimpleItemLottery2.EventHandlers;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.sql.SQLException;
 import java.text.MessageFormat;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -59,6 +62,11 @@ public class ItemUseListener implements Listener {
             final ItemStack prize = PrizesDatabase.getItem(randomRow);
             if (prize != null) {
                 player.getInventory().addItem(prize);
+                final FileWriter writer = new FileWriter(new File(Main.getInstance().getDataFolder(), "log.log"), true);
+                writer.append(MessageFormat.format(Lang.LOG_FORMAT.toString() + "\r\n",
+                        new Date(System.currentTimeMillis()), player.getName(), prizeClass, prize.getAmount() + " x "
+                                + prize.getItemMeta().getDisplayName() + "(" + prize.getType().name() + ")"));
+                writer.close();
                 player.updateInventory();
                 if (prize.getItemMeta().getDisplayName() != null) {
                     player.sendMessage(MessageFormat.format(Lang.YOU_WON_THIS_DISPLAYNAME.toString(),
@@ -81,6 +89,12 @@ public class ItemUseListener implements Listener {
                                     "Cash amount is null! Probably somebody has screwed up some table data.");
                         }
                         economy.depositPlayer(player.getName(), cashPrizeAmount);
+                        final FileWriter writer = new FileWriter(
+                                new File(Main.getInstance().getDataFolder(), "log.log"), true);
+                        writer.append(MessageFormat.format(Lang.LOG_FORMAT.toString() + "\r\n",
+                                new Date(System.currentTimeMillis()), player.getName(), prizeClass,
+                                Lang.MONEY_SIGN.toString() + cashPrizeAmount.toString()));
+                        writer.close();
                         player.sendMessage(MessageFormat.format(Lang.YOU_WON_MONEY.toString(), cashPrizeAmount));
                     } catch (final Error e) {
                         player.sendMessage(MessageFormat.format(Lang.ERROR_HOOKING.toString(), "Vault"));
