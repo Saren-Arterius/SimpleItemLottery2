@@ -18,8 +18,8 @@ Feature
 Commands
 ========
 * **/silot2 add <prize class> <probabilty> [money amount]** - Hold an item on hand, and type the command to add it as prize into database. If money amount is givin, cash prize will be added instead.
-* **/silot2 list [prize class] [page] ** - Views prize list.
-* **/silot2 make <prize class> [ticket amount] ** - Makes lottery tickets.
+* **/silot2 list [prize class] [page]** - Views prize list.
+* **/silot2 make <prize class> [ticket amount]** - Makes lottery tickets.
 * **/silot2 delete (id 1, id 2, id 3...)** - Deletes prize rows from database.
 * **/silot2 reload** - Reloads the plugin.
 
