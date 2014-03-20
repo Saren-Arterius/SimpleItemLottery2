@@ -75,7 +75,7 @@ Making lottery tickets
 -----------
 * Type **/silot2 make 1 16** to make 16 * class 1 lottery tickets. You can consider selling them in regular shops, or give them to newcomers.
 
-* Type **/silot2 make 2** to make a class 2 lottery tickets. Consider selling them in higher class shop or giveng them out as event prizes!
+* Type **/silot2 make 2** to make a class 2 lottery tickets. Consider selling them in higher class shop or giving them out as event prizes!
 
 * Type **/silot2 make 3** to make a class 3 lottery tickets. Consider letting them be one of the drops of a boss mob.
 
