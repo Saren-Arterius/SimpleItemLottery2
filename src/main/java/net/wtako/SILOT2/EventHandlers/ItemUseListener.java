@@ -29,7 +29,7 @@ public class ItemUseListener implements Listener {
     public void onPlayerInteract(PlayerInteractEvent event) {
         final Player player = event.getPlayer();
         final ItemStack lotteryTicketItem = event.getItem();
-        if (!player.hasPermission(Main.getInstance().getProperty("artifactId")+".use")) {
+        if (!player.hasPermission(Main.getInstance().getProperty("artifactId") + ".use")) {
             player.sendMessage(Lang.NO_PERMISSION_DO.toString());
             return;
         }

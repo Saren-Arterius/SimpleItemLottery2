@@ -12,7 +12,7 @@ import org.bukkit.entity.Player;
 public class ArgAdd {
 
     public ArgAdd(CommandSender sender, String[] args) {
-        if (!sender.hasPermission(Main.getInstance().getProperty("artifactId")+".admin")) {
+        if (!sender.hasPermission(Main.getInstance().getProperty("artifactId") + ".admin")) {
             sender.sendMessage(Lang.NO_PERMISSION_COMMAND.toString());
             return;
         }

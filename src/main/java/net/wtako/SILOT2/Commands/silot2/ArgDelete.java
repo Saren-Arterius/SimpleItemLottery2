@@ -14,7 +14,7 @@ import org.bukkit.command.CommandSender;
 public class ArgDelete {
 
     public ArgDelete(CommandSender sender, String[] args) {
-        if (!sender.hasPermission(Main.getInstance().getProperty("artifactId")+".admin")) {
+        if (!sender.hasPermission(Main.getInstance().getProperty("artifactId") + ".admin")) {
             sender.sendMessage(Lang.NO_PERMISSION_COMMAND.toString());
             return;
         }
