@@ -1,6 +1,6 @@
-package net.wtako.SimpleItemLottery2.Commands.silot2;
+package net.wtako.SILOT2.Commands.silot2;
 
-import net.wtako.SimpleItemLottery2.Utils.Lang;
+import net.wtako.SILOT2.Utils.Lang;
 
 import org.bukkit.command.CommandSender;
 

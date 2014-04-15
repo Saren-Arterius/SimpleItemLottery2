@@ -1,12 +1,12 @@
-package net.wtako.SimpleItemLottery2.Commands.silot2;
+package net.wtako.SILOT2.Commands.silot2;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import net.wtako.SimpleItemLottery2.Methods.PrizesDatabase;
-import net.wtako.SimpleItemLottery2.Utils.Lang;
+import net.wtako.SILOT2.Methods.PrizesDatabase;
+import net.wtako.SILOT2.Utils.Lang;
 
 import org.bukkit.command.CommandSender;
 

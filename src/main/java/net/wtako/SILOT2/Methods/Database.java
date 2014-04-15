@@ -1,4 +1,4 @@
-package net.wtako.SimpleItemLottery2.Methods;
+package net.wtako.SILOT2.Methods;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.MessageFormat;
 
-import net.wtako.SimpleItemLottery2.Main;
-import net.wtako.SimpleItemLottery2.Utils.Lang;
+import net.wtako.SILOT2.Main;
+import net.wtako.SILOT2.Utils.Lang;
 
 public class Database {
 

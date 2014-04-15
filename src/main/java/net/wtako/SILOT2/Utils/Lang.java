@@ -1,4 +1,4 @@
-package net.wtako.SimpleItemLottery2.Utils;
+package net.wtako.SILOT2.Utils;
 
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.YamlConfiguration;

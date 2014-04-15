@@ -1,4 +1,4 @@
-package net.wtako.SimpleItemLottery2.Methods;
+package net.wtako.SILOT2.Methods;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import net.wtako.SimpleItemLottery2.Main;
-import net.wtako.SimpleItemLottery2.Utils.Lang;
+import net.wtako.SILOT2.Main;
+import net.wtako.SILOT2.Utils.Lang;
 
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;

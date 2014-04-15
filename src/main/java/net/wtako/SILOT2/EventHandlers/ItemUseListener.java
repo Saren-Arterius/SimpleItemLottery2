@@ -1,4 +1,4 @@
-package net.wtako.SimpleItemLottery2.EventHandlers;
+package net.wtako.SILOT2.EventHandlers;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -9,9 +9,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import net.milkbowl.vault.economy.Economy;
-import net.wtako.SimpleItemLottery2.Main;
-import net.wtako.SimpleItemLottery2.Methods.PrizesDatabase;
-import net.wtako.SimpleItemLottery2.Utils.Lang;
+import net.wtako.SILOT2.Main;
+import net.wtako.SILOT2.Methods.PrizesDatabase;
+import net.wtako.SILOT2.Utils.Lang;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;

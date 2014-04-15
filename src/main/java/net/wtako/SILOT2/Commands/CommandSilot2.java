@@ -1,11 +1,11 @@
-package net.wtako.SimpleItemLottery2.Commands;
+package net.wtako.SILOT2.Commands;
 
-import net.wtako.SimpleItemLottery2.Commands.silot2.ArgAdd;
-import net.wtako.SimpleItemLottery2.Commands.silot2.ArgDelete;
-import net.wtako.SimpleItemLottery2.Commands.silot2.ArgHelp;
-import net.wtako.SimpleItemLottery2.Commands.silot2.ArgList;
-import net.wtako.SimpleItemLottery2.Commands.silot2.ArgMake;
-import net.wtako.SimpleItemLottery2.Commands.silot2.ArgReload;
+import net.wtako.SILOT2.Commands.silot2.ArgAdd;
+import net.wtako.SILOT2.Commands.silot2.ArgDelete;
+import net.wtako.SILOT2.Commands.silot2.ArgHelp;
+import net.wtako.SILOT2.Commands.silot2.ArgList;
+import net.wtako.SILOT2.Commands.silot2.ArgMake;
+import net.wtako.SILOT2.Commands.silot2.ArgReload;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

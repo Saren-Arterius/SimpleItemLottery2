@@ -1,4 +1,4 @@
-package net.wtako.SimpleItemLottery2;
+package net.wtako.SILOT2;
 
 import java.io.File;
 import java.io.IOException;
@@ -7,10 +7,10 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import net.wtako.SimpleItemLottery2.Commands.CommandSilot2;
-import net.wtako.SimpleItemLottery2.EventHandlers.ItemUseListener;
-import net.wtako.SimpleItemLottery2.Methods.Database;
-import net.wtako.SimpleItemLottery2.Utils.Lang;
+import net.wtako.SILOT2.Commands.CommandSilot2;
+import net.wtako.SILOT2.EventHandlers.ItemUseListener;
+import net.wtako.SILOT2.Methods.Database;
+import net.wtako.SILOT2.Utils.Lang;
 
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
