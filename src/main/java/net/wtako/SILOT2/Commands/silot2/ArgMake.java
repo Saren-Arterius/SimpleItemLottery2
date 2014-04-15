@@ -6,6 +6,7 @@ import java.util.List;
 
 import net.wtako.SILOT2.Main;
 import net.wtako.SILOT2.Utils.Lang;
+import net.wtako.SILOT2.Utils.StringUtils;
 
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
@@ -36,7 +37,7 @@ public class ArgMake {
                 final ItemMeta lotteryTicketMeta = lotteryTickets.getItemMeta();
                 final List<String> lores = new ArrayList<String>();
                 lores.add(Lang.LOTTERY_TICKET.toString());
-                lores.add(MessageFormat.format("Class: {0}", prizeClass));
+                lores.add(StringUtils.toInvisible(String.valueOf(prizeClass)));
                 lores.add(MessageFormat.format(Lang.LOTTERY_TICKET_CLASS.toString(), prizeClass));
                 lores.add(Lang.LOTTERY_TICKET_USAGE.toString());
                 lotteryTicketMeta.setLore(lores);

@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.sql.SQLException;
 import java.text.MessageFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -12,8 +13,8 @@ import net.milkbowl.vault.economy.Economy;
 import net.wtako.SILOT2.Main;
 import net.wtako.SILOT2.Methods.PrizesDatabase;
 import net.wtako.SILOT2.Utils.Lang;
+import net.wtako.SILOT2.Utils.StringUtils;
 
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -27,30 +28,36 @@ public class ItemUseListener implements Listener {
     @SuppressWarnings("deprecation")
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
+        Integer prizeClass;
         final Player player = event.getPlayer();
         final ItemStack lotteryTicketItem = event.getItem();
-        if (!player.hasPermission(Main.getInstance().getProperty("artifactId") + ".use")) {
-            player.sendMessage(Lang.NO_PERMISSION_DO.toString());
-            return;
-        }
         if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK) {
             return;
         }
         if (lotteryTicketItem == null || !lotteryTicketItem.hasItemMeta() || !lotteryTicketItem.getItemMeta().hasLore()) {
             return;
         }
-        if (lotteryTicketItem.getType() != Material.getMaterial(Main.getInstance().getConfig()
-                .getString("variable.make.TicketItemType").toUpperCase())) {
+        List<String> lore = lotteryTicketItem.getItemMeta().getLore();
+        if (lore.size() < 4) {
             return;
         }
-        final String IDRow = lotteryTicketItem.getItemMeta().getLore().get(1);
-        final String regex = "^Class: (\\d+)$";
-        final Pattern pattern = Pattern.compile(regex);
-        final Matcher matcher = pattern.matcher(IDRow);
-        matcher.find();
         try {
-            final Integer prizeClass = Integer.parseInt(matcher.group(1));
-            if (!player.hasPermission(MessageFormat.format("SILOT2.class.{0}", prizeClass))) {
+            try {
+                prizeClass = Integer.parseInt(StringUtils.fromInvisible(lore.get(1)));
+            } catch (Exception e) {
+                final String IDRow = lore.get(1);
+                final String regex = "^Class: (\\d+)$";
+                final Pattern pattern = Pattern.compile(regex);
+                final Matcher matcher = pattern.matcher(IDRow);
+                matcher.find();
+                prizeClass = Integer.parseInt(matcher.group(1));
+            }
+            if (!player.hasPermission(Main.getInstance().getProperty("artifactId") + ".use")) {
+                player.sendMessage(Lang.NO_PERMISSION_DO.toString());
+                return;
+            }
+            if (!player.hasPermission(MessageFormat.format(Main.getInstance().getProperty("artifactId") + ".class.{0}",
+                    prizeClass))) {
                 player.sendMessage(Lang.NO_PERMISSION_CLASS.toString());
                 return;
             }
