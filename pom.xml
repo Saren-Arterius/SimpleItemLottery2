@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>net.wtako</groupId>
 	<artifactId>SILOT2</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.0.2</version>
 	<name>SimpleItemLottery2</name>
 	<description>Lottery tickets to item prizes or cash prizes. Supports item meta.</description>
 	<url>https://github.com/Saren-Arterius/SimpleItemLottery2</url>
