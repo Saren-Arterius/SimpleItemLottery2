@@ -1,0 +1,41 @@
+name: SimpleItemLottery2
+version: 0.0.1
+description: Lottery tickets to item prizes or cash prizes. Supports item meta.
+author: Saren
+website: https://github.com/Saren-Arterius/SimpleItemLottery2
+ 
+main: net.wtako.SimpleItemLottery2.Main
+database: true
+softdepend: [Vault]
+
+commands:
+    silot2:
+        description: Basic command.
+        usage: Type /<command> help to get help.
+        permission: SILOT2.use
+        permission-message: You are not permitted to use this plugin.
+
+permissions:
+    SILOT2.*:
+        description: Gives access to all SimpleItemLottery2 commands.
+        default: op
+    SILOT2.admin:
+        description: Gives access to all SimpleItemLottery2 administrative commands.
+        children:
+            SILOT2.reload: true
+            SILOT2.list: true
+            SILOT2.use: true
+            SILOT2.class.*: true
+        default: op
+    SILOT2.reload:
+        description: Reloads the plugin.
+        default: op
+    SILOT2.list:
+        description: Players with this permission can list all the prizes.
+        default: op
+    SILOT2.use:
+        description: Gives access to use lottery ticket.
+        default: true
+    SILOT2.class.*:
+        description: Gives access to use class X lottery ticket.
+        default: true
