@@ -2,6 +2,7 @@ package net.wtako.SILOT2.Commands.silot2;
 
 import java.sql.SQLException;
 
+import net.wtako.SILOT2.Main;
 import net.wtako.SILOT2.Methods.PrizesDatabase;
 import net.wtako.SILOT2.Utils.Lang;
 
@@ -10,7 +11,7 @@ import org.bukkit.command.CommandSender;
 public class ArgList {
 
     public ArgList(CommandSender sender, String[] args) {
-        if (!sender.hasPermission("SILOT2.list")) {
+        if (!sender.hasPermission(Main.getInstance().getProperty("artifactId")+".list")) {
             sender.sendMessage(Lang.NO_PERMISSION_COMMAND.toString());
             return;
         }

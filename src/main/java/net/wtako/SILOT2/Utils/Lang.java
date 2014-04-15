@@ -1,5 +1,7 @@
 package net.wtako.SILOT2.Utils;
 
+import net.wtako.SILOT2.Main;
+
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -10,7 +12,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
  */
 public enum Lang {
 
-    TITLE("title", "[SILOT2]"),
+    TITLE("title", "[" + Main.getInstance().getProperty("artifactId") + "]"),
 
     TABLE_LIST("table-list", "&aPrize list:"),
     LIST_FORMAT1("list-format1", "{0}. &e{1} &f- &c{2}&f x <&c{3}&f>({4})"),
@@ -39,11 +41,17 @@ public enum Lang {
 
     HELP_ADD(
             "help-add",
-            "&eHold an item&f on hand, and type &a/silot2 add &f<&cprize class&f> <&cprobability&f> [&cmoney amount&f] to add it into database. &eIf money amount is given, &ccash prize&e will be added instead."),
-    HELP_LIST("help-list", "Type &a/silot2 list &f[&cprize class&f] [&cpage&f] to view prize list."),
-    HELP_MAKE("help-make", "Type &a/silot2 make &f<&cprize class&f> [&camount&f] to make lottery tickets."),
-    HELP_DELETE("help-delete", "Type &a/silot2 delete &f(&cid 1&f, &cid 2&f, &cid 3&f...) to delete prize rows."),
-    HELP_RELOAD("help-reload", "Type &a/silot2 reload&f to reload this plugin."),
+            "&eHold an item&f on hand, and type &a/"
+                    + Main.getInstance().getProperty("artifactId")
+                    + " add &f<&cprize class&f> <&cprobability&f> [&cmoney amount&f] to add it into database. &eIf money amount is given, &ccash prize&e will be added instead."),
+    HELP_LIST("help-list", "Type &a/" + Main.getInstance().getProperty("artifactId")
+            + " list &f[&cprize class&f] [&cpage&f] to view prize list."),
+    HELP_MAKE("help-make", "Type &a/" + Main.getInstance().getProperty("artifactId")
+            + " make &f<&cprize class&f> [&camount&f] to make lottery tickets."),
+    HELP_DELETE("help-delete", "Type &a/" + Main.getInstance().getProperty("artifactId")
+            + " delete &f(&cid 1&f, &cid 2&f, &cid 3&f...) to delete prize rows."),
+    HELP_RELOAD("help-reload", "Type &a/" + Main.getInstance().getProperty("artifactId")
+            + " reload&f to reload this plugin."),
 
     PLUGIN_RELOADED("plugin-reloaded", "&aPlugin reloaded."),
     DB_EXCEPTION("db-exception", "&4A database error occured! Please contact server administrators."),

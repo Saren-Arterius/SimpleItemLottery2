@@ -17,7 +17,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class ArgMake {
 
     public ArgMake(CommandSender sender, String[] args) {
-        if (!sender.hasPermission("SILOT2.admin")) {
+        if (!sender.hasPermission(Main.getInstance().getProperty("artifactId")+".admin")) {
             sender.sendMessage(Lang.NO_PERMISSION_COMMAND.toString());
             return;
         }

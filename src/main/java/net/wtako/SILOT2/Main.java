@@ -27,7 +27,7 @@ public final class Main extends JavaPlugin {
         Main.instance = this;
         saveDefaultConfig();
         getConfig().options().copyDefaults(true);
-        getCommand("silot2").setExecutor(new CommandSilot2());
+        getCommand(Main.getInstance().getProperty("artifactId")).setExecutor(new CommandSilot2());
         getServer().getPluginManager().registerEvents(new ItemUseListener(), this);
         loadLang();
         try {
@@ -54,8 +54,8 @@ public final class Main extends JavaPlugin {
                 }
             } catch (final IOException e) {
                 e.printStackTrace(); // So they notice
-                Main.log.severe("[SILOT2] Couldn't create language file.");
-                Main.log.severe("[SILOT2] This is a fatal error. Now disabling");
+                Main.log.severe("[" + Main.getInstance().getName() + "] Couldn't create language file.");
+                Main.log.severe("[" + Main.getInstance().getName() + "] This is a fatal error. Now disabling");
                 setEnabled(false); // Without it loaded, we can't send them
                                    // messages
             }
@@ -72,8 +72,9 @@ public final class Main extends JavaPlugin {
         try {
             conf.save(getLangFile());
         } catch (final IOException e) {
-            Main.log.log(Level.WARNING, "PluginName: Failed to save messages.yml.");
-            Main.log.log(Level.WARNING, "PluginName: Report this stack trace to Saren.");
+            Main.log.log(Level.WARNING, "[" + Main.getInstance().getName() + "] Failed to save messages.yml.");
+            Main.log.log(Level.WARNING, "[" + Main.getInstance().getName() + "] Report this stack trace to "
+                    + getProperty("author") + ".");
             e.printStackTrace();
         }
     }
@@ -96,7 +97,13 @@ public final class Main extends JavaPlugin {
         return Main.LANG_FILE;
     }
 
+    public String getProperty(String key) {
+        final YamlConfiguration spawnConfig = YamlConfiguration.loadConfiguration(getResource("plugin.yml"));
+        return spawnConfig.getString(key);
+    }
+
     public static Main getInstance() {
         return Main.instance;
     }
+
 }

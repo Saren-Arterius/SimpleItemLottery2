@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import net.wtako.SILOT2.Main;
 import net.wtako.SILOT2.Methods.PrizesDatabase;
 import net.wtako.SILOT2.Utils.Lang;
 
@@ -13,7 +14,7 @@ import org.bukkit.command.CommandSender;
 public class ArgDelete {
 
     public ArgDelete(CommandSender sender, String[] args) {
-        if (!sender.hasPermission("SILOT2.admin")) {
+        if (!sender.hasPermission(Main.getInstance().getProperty("artifactId")+".admin")) {
             sender.sendMessage(Lang.NO_PERMISSION_COMMAND.toString());
             return;
         }

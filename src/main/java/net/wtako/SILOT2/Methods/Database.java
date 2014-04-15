@@ -18,7 +18,7 @@ public class Database {
     public Database() throws SQLException {
         Database.instance = this;
         final String path = MessageFormat.format("jdbc:sqlite:{0}/{1}", Main.getInstance().getDataFolder()
-                .getAbsolutePath(), "SimpleItemLottery2.db");
+                .getAbsolutePath(), Main.getInstance().getName() + ".db");
         conn = DriverManager.getConnection(path);
     }
 
