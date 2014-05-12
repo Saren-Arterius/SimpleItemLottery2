@@ -22,7 +22,7 @@ Commands
 ========
 * **/silot2 add <prize class> <probability> [money amount]** - Hold an item on hand, and type the command to add it as prize into database. If money amount is given, cash prize will be added instead.
 * **/silot2 list [prize class default=1] [page default=1]** - Views prize list.
-* **/silot2 make <prize class default=1> [ticket amount default=1]** - Makes lottery tickets.
+* **/silot2 make <prize class default=1> [ticket amount default=1] [player default=you]** - Makes lottery tickets [and gives them to somebody].
 * **/silot2 delete (id 1, id 2, id 3...)** - Deletes prize rows from database.
 * **/silot2 reload** - Reloads the plugin.
 
