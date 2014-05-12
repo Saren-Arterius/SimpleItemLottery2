@@ -37,15 +37,14 @@ public class PrizesDatabase extends Database {
             player.sendMessage(Lang.CANNOT_ADD_AIR.toString());
             return false;
         }
-        if (prizeClass < 0
-                || prizeClass > Main.getInstance().getConfig().getInt("variable.add.MaxClassCount")) {
-            player.sendMessage(MessageFormat.format(Lang.VALUE_ERROR.toString(), "prize class",
-                    Main.getInstance().getConfig().getInt("variable.add.MaxClassCount")));
+        if (prizeClass < 0 || prizeClass > Main.getInstance().getConfig().getInt("variable.add.MaxClassCount")) {
+            player.sendMessage(MessageFormat.format(Lang.VALUE_ERROR.toString(), "prize class", Main.getInstance()
+                    .getConfig().getInt("variable.add.MaxClassCount")));
             return false;
         }
         if (prob < 0 || prob > Main.getInstance().getConfig().getInt("variable.add.MaxProb")) {
-            player.sendMessage(MessageFormat.format(Lang.VALUE_ERROR.toString(), "prob", Main
-                    .getInstance().getConfig().getInt("variable.add.MaxProb")));
+            player.sendMessage(MessageFormat.format(Lang.VALUE_ERROR.toString(), "prob", Main.getInstance().getConfig()
+                    .getInt("variable.add.MaxProb")));
             return false;
         }
         final Map<String, Integer> tempEnchantmentMap = new HashMap<String, Integer>();
@@ -79,8 +78,7 @@ public class PrizesDatabase extends Database {
         return true;
     }
 
-    public static boolean addCashPrize(int moneyAmount, int prizeClass, int prob, Player player)
-            throws SQLException {
+    public static boolean addCashPrize(int moneyAmount, int prizeClass, int prob, Player player) throws SQLException {
         if (!Main.getInstance().getConfig().getBoolean("system.VaultSupport")) {
             player.sendMessage(Lang.ECON_NOT_SUPPORTED.toString());
             return false;
@@ -89,15 +87,14 @@ public class PrizesDatabase extends Database {
             player.sendMessage(Lang.MONEY_ERROR.toString());
             return false;
         }
-        if (prizeClass < 0
-                || prizeClass > Main.getInstance().getConfig().getInt("variable.add.MaxClassCount")) {
-            player.sendMessage(MessageFormat.format(Lang.VALUE_ERROR.toString(), "prize class",
-                    Main.getInstance().getConfig().getInt("variable.add.MaxClassCount")));
+        if (prizeClass < 0 || prizeClass > Main.getInstance().getConfig().getInt("variable.add.MaxClassCount")) {
+            player.sendMessage(MessageFormat.format(Lang.VALUE_ERROR.toString(), "prize class", Main.getInstance()
+                    .getConfig().getInt("variable.add.MaxClassCount")));
             return false;
         }
         if (prob < 0 || prob > Main.getInstance().getConfig().getInt("variable.add.MaxProb")) {
-            player.sendMessage(MessageFormat.format(Lang.VALUE_ERROR.toString(), "prob", Main
-                    .getInstance().getConfig().getInt("variable.add.MaxProb")));
+            player.sendMessage(MessageFormat.format(Lang.VALUE_ERROR.toString(), "prob", Main.getInstance().getConfig()
+                    .getInt("variable.add.MaxProb")));
             return false;
         }
         final PreparedStatement insStmt = Database.getInstance().conn
@@ -128,16 +125,12 @@ public class PrizesDatabase extends Database {
         PreparedStatement selStmt2;
         ResultSet result;
         Integer pagesCount;
-        final Integer rowsLimit = Main.getInstance().getConfig()
-                .getInt("variable.list.RowsPerPage");
+        final Integer rowsLimit = Main.getInstance().getConfig().getInt("variable.list.RowsPerPage");
 
         if (prizeClass != null) {
-            if (prizeClass < 0
-                    || prizeClass > Main.getInstance().getConfig()
-                            .getInt("variable.add.MaxClassCount")) {
-                final String msg[] = {MessageFormat.format(Lang.VALUE_ERROR.toString(),
-                        "prize class",
-                        Main.getInstance().getConfig().getInt("variable.add.MaxClassCount"))};
+            if (prizeClass < 0 || prizeClass > Main.getInstance().getConfig().getInt("variable.add.MaxClassCount")) {
+                final String msg[] = {MessageFormat.format(Lang.VALUE_ERROR.toString(), "prize class", Main
+                        .getInstance().getConfig().getInt("variable.add.MaxClassCount"))};
                 return msg;
             }
             final PreparedStatement selStmt1 = Database.getInstance().conn
@@ -162,9 +155,8 @@ public class PrizesDatabase extends Database {
             if (page >= pagesCount) {
                 page = pagesCount;
             }
-            selStmt2 = Database.getInstance().conn
-                    .prepareStatement("SELECT * FROM `prizes` ORDER BY rowid DESC LIMIT "
-                            + rowsLimit.toString() + " OFFSET ?");
+            selStmt2 = Database.getInstance().conn.prepareStatement("SELECT * FROM `prizes` ORDER BY rowid DESC LIMIT "
+                    + rowsLimit.toString() + " OFFSET ?");
             selStmt2.setInt(1, (page - 1) * rowsLimit);
             result = selStmt2.executeQuery();
         }
@@ -172,12 +164,10 @@ public class PrizesDatabase extends Database {
         tableArrayList.add(Lang.TABLE_LIST.toString());
         while (result.next()) {
             hasNoPrize = false;
-            tableArrayList
-                    .add(MessageFormat.format(Lang.LIST_FORMAT1.toString(), result.getInt(1),
-                            result.getString(2), result.getInt(9), result.getString(7),
-                            result.getString(5)));
-            tableArrayList.add(MessageFormat.format(Lang.LIST_FORMAT2.toString(), result.getInt(4),
-                    result.getInt(3), new Date((long) result.getInt(10) * 1000)));
+            tableArrayList.add(MessageFormat.format(Lang.LIST_FORMAT1.toString(), result.getInt(1),
+                    result.getString(2), result.getInt(9), result.getString(7), result.getString(5)));
+            tableArrayList.add(MessageFormat.format(Lang.LIST_FORMAT2.toString(), result.getInt(4), result.getInt(3),
+                    new Date((long) result.getInt(10) * 1000)));
         }
         result.close();
         selStmt2.close();
@@ -193,16 +183,10 @@ public class PrizesDatabase extends Database {
     }
 
     public static Integer getRandomRowID(int prizeClass) throws SQLException {
-        int probSum = 0;
-
         final PreparedStatement selStmt1 = Database.getInstance().conn
-                .prepareStatement("SELECT rowid, prob FROM `prizes` WHERE prize_class = ?");
+                .prepareStatement("SELECT SUM(prob) FROM `prizes` WHERE prize_class = ?");
         selStmt1.setInt(1, prizeClass);
-        final ResultSet result1 = selStmt1.executeQuery();
-        while (result1.next()) {
-            probSum += result1.getInt(2);
-        }
-        result1.close();
+        int probSum = selStmt1.executeQuery().getInt(1);
         selStmt1.close();
 
         if (probSum == 0) {
@@ -215,18 +199,20 @@ public class PrizesDatabase extends Database {
                 .prepareStatement("SELECT rowid, prob FROM `prizes` WHERE prize_class = ?");
         selStmt2.setInt(1, prizeClass);
         final ResultSet result2 = selStmt2.executeQuery();
+        int rowID = -1;
         while (result2.next()) {
             rand -= result2.getInt(2);
             if (rand <= 0) {
-                final int rowID = result2.getInt(1);
-                selStmt2.close();
-                result2.close();
-                return rowID;
+                rowID = result2.getInt(1);
+                break;
             }
         }
         selStmt2.close();
         result2.close();
-        return null;
+        if (rowID == -1) {
+            return null;
+        }
+        return rowID;
     }
 
     @SuppressWarnings("unchecked")
@@ -245,27 +231,24 @@ public class PrizesDatabase extends Database {
             selStmt.close();
             return null;
         }
-        final ItemStack prize = new ItemStack(Material.getMaterial(result.getString(5)),
-                result.getInt(9));
+        final ItemStack prize = new ItemStack(Material.getMaterial(result.getString(5)), result.getInt(9));
 
-        final Map<String, Long> enchantmentMap = (Map<String, Long>) JSONValue.parse(result
-                .getString(6));
-        final Map<String, Object> prizeMetaMap = (Map<String, Object>) JSONValue.parse(result
-                .getString(8));
+        final Map<String, Long> enchantmentMap = (Map<String, Long>) JSONValue.parse(result.getString(6));
+        final Map<String, Object> prizeMetaMap = (Map<String, Object>) JSONValue.parse(result.getString(8));
 
         if (prize.getType() == Material.ENCHANTED_BOOK) {
-            final EnchantmentStorageMeta esm = (EnchantmentStorageMeta) ItemUtils
-                    .deserialize(prizeMetaMap); // This doesn't give shit
+            final EnchantmentStorageMeta esm = (EnchantmentStorageMeta) ItemUtils.deserialize(prizeMetaMap); // This
+                                                                                                             // doesn't
+                                                                                                             // give
+                                                                                                             // shit
             for (final Entry<String, Long> entry: enchantmentMap.entrySet()) {
-                esm.addStoredEnchant(Enchantment.getByName(entry.getKey()), entry.getValue()
-                        .intValue(), false);
+                esm.addStoredEnchant(Enchantment.getByName(entry.getKey()), entry.getValue().intValue(), false);
             }
             prize.setItemMeta(esm);
         } else {
             prize.setItemMeta((ItemMeta) ItemUtils.deserialize(prizeMetaMap));
             for (final Entry<String, Long> entry: enchantmentMap.entrySet()) {
-                prize.addUnsafeEnchantment(Enchantment.getByName(entry.getKey()), entry.getValue()
-                        .intValue());
+                prize.addUnsafeEnchantment(Enchantment.getByName(entry.getKey()), entry.getValue().intValue());
             }
         }
         result.close();

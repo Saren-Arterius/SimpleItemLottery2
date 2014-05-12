@@ -31,46 +31,41 @@ public enum Lang {
 
     ADD_SUCCESS("add-success", "&aSuccessfully added prize."),
     MAKE_SUCCESS("make-success", "&aSuccessfully made ticket(s)."),
+    MAKE_SUCCESS_TO_PLAYER("make-success-to-player", "&aSuccessfully made ticket(s) and gave them to {0}."),
     MULTIPLE_DELETE_SUCCESS("multiple-delete-success", "&aSuccessfully deleted all valid rows."),
 
     NO_PRIZE("no-prize", "&eCurrently no prize is added to database."),
-    NO_PRIZE_FROM_TICKET(
-            "no-prize-from-ticket",
-            "&eThere is still no prize for this class of ticket yet."),
+    NO_PRIZE_FROM_TICKET("no-prize-from-ticket", "&eThere is still no prize for this class of ticket yet."),
     CANNOT_ADD_AIR("cannot-add-air", "&cYou cant add air as prize!"),
     MONEY_ERROR("money-error", "&cCash prize's amount must be greater than 1."),
     VALUE_ERROR("value-error", "&cValue {0} must be less or equal to {1}."),
+    PLAYER_NOT_FOUND("player-not-found", "&cCannot find player {0}: does not exist or offline."),
 
     HELP_ADD(
             "help-add",
             "&eHold an item&f on hand, and type &a/"
-                    + Main.getInstance().getProperty("artifactId")
+                    + Main.getInstance().getProperty("artifactId").toLowerCase()
                     + " add &f<&cprize class&f> <&cprobability&f> [&cmoney amount&f] to add it into database. &eIf money amount is given, &ccash prize&e will be added instead."),
-    HELP_LIST("help-list", "Type &a/" + Main.getInstance().getProperty("artifactId")
+    HELP_LIST("help-list", "Type &a/" + Main.getInstance().getProperty("artifactId").toLowerCase()
             + " list &f[&cprize class&f] [&cpage&f] to view prize list."),
-    HELP_MAKE("help-make", "Type &a/" + Main.getInstance().getProperty("artifactId")
-            + " make &f<&cprize class&f> [&camount&f] to make lottery tickets."),
-    HELP_DELETE("help-delete", "Type &a/" + Main.getInstance().getProperty("artifactId")
+    HELP_MAKE(
+            "help-make",
+            "Type &a/"
+                    + Main.getInstance().getProperty("artifactId").toLowerCase()
+                    + " make &f<&cprize class&f> [&camount&f] [&cplayer&f] to make lottery tickets [&cand give them to a player&f]."),
+    HELP_DELETE("help-delete", "Type &a/" + Main.getInstance().getProperty("artifactId").toLowerCase()
             + " delete &f(&cid 1&f, &cid 2&f, &cid 3&f...) to delete prize rows."),
-    HELP_RELOAD("help-reload", "Type &a/" + Main.getInstance().getProperty("artifactId")
+    HELP_RELOAD("help-reload", "Type &a/" + Main.getInstance().getProperty("artifactId").toLowerCase()
             + " reload&f to reload this plugin."),
 
     PLUGIN_RELOADED("plugin-reloaded", "&aPlugin reloaded."),
-    DB_EXCEPTION(
-            "db-exception",
-            "&4A database error occured! Please contact server administrators."),
-    ERROR_HOOKING(
-            "error-hooking",
-            "&4Error in hooking into {0}! Please contact server administrators."),
+    DB_EXCEPTION("db-exception", "&4A database error occured! Please contact server administrators."),
+    ERROR_HOOKING("error-hooking", "&4Error in hooking into {0}! Please contact server administrators."),
     UNKNOWN_ERROR("unknown-error", "&4Unknown Error! Please contact server administrators."),
-    ECON_NOT_SUPPORTED(
-            "econ-not-supported",
-            "&eEconomy system is currently not supported set in config.yml"),
+    ECON_NOT_SUPPORTED("econ-not-supported", "&eEconomy system is currently not supported set in config.yml"),
     NO_PERMISSION_COMMAND("no-permission-command", "&cYou are not allowed to use this command."),
     NO_PERMISSION_DO("no-permission-do", "&cYou are not allowed to do this."),
-    NO_PERMISSION_CLASS(
-            "no-permission-class",
-            "&cYou are not allowed to use lottery tickets of this class.");
+    NO_PERMISSION_CLASS("no-permission-class", "&cYou are not allowed to use lottery tickets of this class.");
 
     private String                   path;
     private String                   def;
@@ -102,8 +97,7 @@ public enum Lang {
     @Override
     public String toString() {
         if (this == TITLE) {
-            return ChatColor.translateAlternateColorCodes('&', Lang.LANG.getString(path, def))
-                    + " ";
+            return ChatColor.translateAlternateColorCodes('&', Lang.LANG.getString(path, def)) + " ";
         }
         return ChatColor.translateAlternateColorCodes('&', Lang.LANG.getString(path, def));
     }

@@ -63,8 +63,18 @@ public class ArgMake {
                 if (Main.getInstance().getConfig().getBoolean("variable.make.Enchant")) {
                     lotteryTickets.addUnsafeEnchantment(Enchantment.LUCK, 1);
                 }
-                ((Player) sender).getInventory().addItem(lotteryTickets);
-                sender.sendMessage(Lang.MAKE_SUCCESS.toString());
+                if (args.length >= 4) {
+                    Player reciever = Main.getInstance().getServer().getPlayer(args[3]);
+                    if (reciever == null) {
+                        sender.sendMessage(MessageFormat.format(Lang.PLAYER_NOT_FOUND.toString(), args[3]));
+                        return;
+                    }
+                    reciever.getInventory().addItem(lotteryTickets);
+                    sender.sendMessage(MessageFormat.format(Lang.MAKE_SUCCESS_TO_PLAYER.toString(), reciever.getName()));
+                } else {
+                    ((Player) sender).getInventory().addItem(lotteryTickets);
+                    sender.sendMessage(Lang.MAKE_SUCCESS.toString());
+                }
             } else {
                 sender.sendMessage(Lang.HELP_MAKE.toString());
             }
