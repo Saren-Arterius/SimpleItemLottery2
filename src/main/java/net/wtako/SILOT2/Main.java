@@ -47,18 +47,15 @@ public final class Main extends JavaPlugin {
                 lang.createNewFile();
                 final InputStream defConfigStream = getResource("messages.yml");
                 if (defConfigStream != null) {
-                    final YamlConfiguration defConfig = YamlConfiguration
-                            .loadConfiguration(defConfigStream);
+                    final YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
                     defConfig.save(lang);
                     Lang.setFile(defConfig);
                     return;
                 }
             } catch (final IOException e) {
                 e.printStackTrace(); // So they notice
-                Main.log.severe("[" + Main.getInstance().getName()
-                        + "] Couldn't create language file.");
-                Main.log.severe("[" + Main.getInstance().getName()
-                        + "] This is a fatal error. Now disabling");
+                Main.log.severe("[" + Main.getInstance().getName() + "] Couldn't create language file.");
+                Main.log.severe("[" + Main.getInstance().getName() + "] This is a fatal error. Now disabling");
                 setEnabled(false); // Without it loaded, we can't send them
                                    // messages
             }
@@ -75,10 +72,9 @@ public final class Main extends JavaPlugin {
         try {
             conf.save(getLangFile());
         } catch (final IOException e) {
-            Main.log.log(Level.WARNING, "[" + Main.getInstance().getName()
-                    + "] Failed to save messages.yml.");
-            Main.log.log(Level.WARNING, "[" + Main.getInstance().getName()
-                    + "] Report this stack trace to " + getProperty("author") + ".");
+            Main.log.log(Level.WARNING, "[" + Main.getInstance().getName() + "] Failed to save messages.yml.");
+            Main.log.log(Level.WARNING, "[" + Main.getInstance().getName() + "] Report this stack trace to "
+                    + getProperty("author") + ".");
             e.printStackTrace();
         }
     }
@@ -102,8 +98,7 @@ public final class Main extends JavaPlugin {
     }
 
     public String getProperty(String key) {
-        final YamlConfiguration spawnConfig = YamlConfiguration
-                .loadConfiguration(getResource("plugin.yml"));
+        final YamlConfiguration spawnConfig = YamlConfiguration.loadConfiguration(getResource("plugin.yml"));
         return spawnConfig.getString(key);
     }
 

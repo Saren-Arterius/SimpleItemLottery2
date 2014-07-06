@@ -17,6 +17,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class ArgMake {
 
+    @SuppressWarnings("deprecation")
     public ArgMake(CommandSender sender, String[] args) {
         if (!sender.hasPermission(Main.getInstance().getProperty("artifactId") + ".admin")) {
             sender.sendMessage(Lang.NO_PERMISSION_COMMAND.toString());
@@ -25,18 +26,14 @@ public class ArgMake {
         try {
             if (args.length >= 2) {
                 final int prizeClass = Integer.parseInt(args[1]);
-                if (prizeClass < 0
-                        || prizeClass > Main.getInstance().getConfig()
-                                .getInt("variable.add.MaxClassCount")) {
-                    sender.sendMessage(MessageFormat.format(Lang.VALUE_ERROR.toString(),
-                            "prize class",
-                            Main.getInstance().getConfig().getInt("variable.add.MaxClassCount")));
+                if (prizeClass < 0 || prizeClass > Main.getInstance().getConfig().getInt("variable.add.MaxClassCount")) {
+                    sender.sendMessage(MessageFormat.format(Lang.VALUE_ERROR.toString(), "prize class", Main
+                            .getInstance().getConfig().getInt("variable.add.MaxClassCount")));
                     return;
                 }
                 final String itemTypeRequiredString = Main.getInstance().getConfig()
                         .getString("variable.make.TicketItemType");
-                final Material itemTypeRequired = Material.getMaterial(itemTypeRequiredString
-                        .toUpperCase());
+                final Material itemTypeRequired = Material.getMaterial(itemTypeRequiredString.toUpperCase());
                 final ItemStack lotteryTickets = new ItemStack(itemTypeRequired, 1);
                 final ItemMeta lotteryTicketMeta = lotteryTickets.getItemMeta();
                 final List<String> lores = new ArrayList<String>();
@@ -45,8 +42,8 @@ public class ArgMake {
                 lores.add(MessageFormat.format(Lang.LOTTERY_TICKET_CLASS.toString(), prizeClass));
                 lores.add(Lang.LOTTERY_TICKET_USAGE.toString());
                 lotteryTicketMeta.setLore(lores);
-                lotteryTicketMeta.setDisplayName(MessageFormat.format(
-                        Lang.LOTTERY_TICKET_DISPLAY_NAME.toString(), prizeClass));
+                lotteryTicketMeta.setDisplayName(MessageFormat.format(Lang.LOTTERY_TICKET_DISPLAY_NAME.toString(),
+                        prizeClass));
                 lotteryTickets.setItemMeta(lotteryTicketMeta);
                 if (args.length >= 3) {
                     Integer amount;
@@ -64,7 +61,7 @@ public class ArgMake {
                     lotteryTickets.addUnsafeEnchantment(Enchantment.LUCK, 1);
                 }
                 if (args.length >= 4) {
-                    Player reciever = Main.getInstance().getServer().getPlayer(args[3]);
+                    final Player reciever = Main.getInstance().getServer().getPlayer(args[3]);
                     if (reciever == null) {
                         sender.sendMessage(MessageFormat.format(Lang.PLAYER_NOT_FOUND.toString(), args[3]));
                         return;

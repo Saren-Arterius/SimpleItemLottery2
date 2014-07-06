@@ -32,12 +32,10 @@ public class ItemUseListener implements Listener {
         final Player player = event.getPlayer();
         final ItemStack lotteryTicketItem = event.getItem();
 
-        if (event.getAction() != Action.RIGHT_CLICK_AIR
-                && event.getAction() != Action.RIGHT_CLICK_BLOCK) {
+        if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK) {
             return;
         }
-        if (lotteryTicketItem == null || !lotteryTicketItem.hasItemMeta()
-                || !lotteryTicketItem.getItemMeta().hasLore()) {
+        if (lotteryTicketItem == null || !lotteryTicketItem.hasItemMeta() || !lotteryTicketItem.getItemMeta().hasLore()) {
             return;
         }
         final List<String> lore = lotteryTicketItem.getItemMeta().getLore();
@@ -59,8 +57,8 @@ public class ItemUseListener implements Listener {
                 player.sendMessage(Lang.NO_PERMISSION_DO.toString());
                 return;
             }
-            if (!player.hasPermission(MessageFormat.format(
-                    Main.getInstance().getProperty("artifactId") + ".class.{0}", prizeClass))) {
+            if (!player.hasPermission(MessageFormat.format(Main.getInstance().getProperty("artifactId") + ".class.{0}",
+                    prizeClass))) {
                 player.sendMessage(Lang.NO_PERMISSION_CLASS.toString());
                 return;
             }
@@ -72,28 +70,24 @@ public class ItemUseListener implements Listener {
             final ItemStack prize = PrizesDatabase.getPrizeItem(randomRow);
             if (prize != null) {
                 player.getInventory().addItem(prize);
-                final FileWriter writer = new FileWriter(new File(Main.getInstance()
-                        .getDataFolder(), "log.log"), true);
-                writer.append(MessageFormat.format(Lang.LOG_FORMAT.toString() + "\r\n", new Date(
-                        System.currentTimeMillis()), player.getName(), prizeClass,
-                        prize.getAmount() + " x " + prize.getItemMeta().getDisplayName() + "("
-                                + prize.getType().name() + ")"));
+                final FileWriter writer = new FileWriter(new File(Main.getInstance().getDataFolder(), "log.log"), true);
+                writer.append(MessageFormat.format(Lang.LOG_FORMAT.toString() + "\r\n",
+                        new Date(System.currentTimeMillis()), player.getName(), prizeClass, prize.getAmount() + " x "
+                                + prize.getItemMeta().getDisplayName() + "(" + prize.getType().name() + ")"));
                 writer.close();
                 player.updateInventory();
                 if (prize.getItemMeta().getDisplayName() != null) {
-                    player.sendMessage(MessageFormat.format(Lang.YOU_WON_THIS_DISPLAYNAME
-                            .toString(), prize.getAmount(), prize.getItemMeta().getDisplayName(),
-                            prize.getType().name()));
+                    player.sendMessage(MessageFormat.format(Lang.YOU_WON_THIS_DISPLAYNAME.toString(),
+                            prize.getAmount(), prize.getItemMeta().getDisplayName(), prize.getType().name()));
                 } else {
-                    player.sendMessage(MessageFormat.format(Lang.YOU_WON_THIS.toString(),
-                            prize.getAmount(), prize.getType().name()));
+                    player.sendMessage(MessageFormat.format(Lang.YOU_WON_THIS.toString(), prize.getAmount(), prize
+                            .getType().name()));
                 }
             } else {
                 if (Main.getInstance().getConfig().getBoolean("system.VaultSupport")) {
                     try {
-                        final RegisteredServiceProvider<Economy> provider = Main.getInstance()
-                                .getServer().getServicesManager()
-                                .getRegistration(net.milkbowl.vault.economy.Economy.class);
+                        final RegisteredServiceProvider<Economy> provider = Main.getInstance().getServer()
+                                .getServicesManager().getRegistration(net.milkbowl.vault.economy.Economy.class);
                         final Economy economy = provider.getProvider();
                         Main.log.info(String.valueOf(randomRow));
                         final Integer cashPrizeAmount = PrizesDatabase.getCashAmount(randomRow);
@@ -103,17 +97,15 @@ public class ItemUseListener implements Listener {
                                     "Cash amount is null! Probably somebody has screwed up some table data.");
                         }
                         economy.depositPlayer(player.getName(), cashPrizeAmount);
-                        final FileWriter writer = new FileWriter(new File(Main.getInstance()
-                                .getDataFolder(), "log.log"), true);
+                        final FileWriter writer = new FileWriter(
+                                new File(Main.getInstance().getDataFolder(), "log.log"), true);
                         writer.append(MessageFormat.format(Lang.LOG_FORMAT.toString() + "\r\n",
                                 new Date(System.currentTimeMillis()), player.getName(), prizeClass,
                                 Lang.MONEY_SIGN.toString() + cashPrizeAmount.toString()));
                         writer.close();
-                        player.sendMessage(MessageFormat.format(Lang.YOU_WON_MONEY.toString(),
-                                cashPrizeAmount));
+                        player.sendMessage(MessageFormat.format(Lang.YOU_WON_MONEY.toString(), cashPrizeAmount));
                     } catch (final Error e) {
-                        player.sendMessage(MessageFormat.format(Lang.ERROR_HOOKING.toString(),
-                                "Vault"));
+                        player.sendMessage(MessageFormat.format(Lang.ERROR_HOOKING.toString(), "Vault"));
                         e.printStackTrace();
                         return;
                     }
@@ -122,12 +114,13 @@ public class ItemUseListener implements Listener {
                     return;
                 }
             }
+            final int remaining = (player.getInventory().all(lotteryTicketItem).size() * lotteryTicketItem.getAmount()) - 1;
             player.getInventory().remove(lotteryTicketItem);
-            final int remaining = lotteryTicketItem.getAmount() - 1;
             if (remaining > 0) {
                 lotteryTicketItem.setAmount(remaining);
                 player.getInventory().addItem(lotteryTicketItem);
             }
+            player.updateInventory();
         } catch (final SQLException e) {
             player.sendMessage(Lang.DB_EXCEPTION.toString());
             e.printStackTrace();

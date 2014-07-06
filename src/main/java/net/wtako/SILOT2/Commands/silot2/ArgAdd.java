@@ -18,8 +18,8 @@ public class ArgAdd {
         }
         if (args.length >= 4) {
             try {
-                if (PrizesDatabase.addCashPrize(Integer.parseInt(args[3]),
-                        Integer.parseInt(args[1]), Integer.parseInt(args[2]), (Player) sender)) {
+                if (PrizesDatabase.addCashPrize(Integer.parseInt(args[3]), Integer.parseInt(args[1]),
+                        Integer.parseInt(args[2]), (Player) sender)) {
                     sender.sendMessage(Lang.ADD_SUCCESS.toString());
                 }
             } catch (final NumberFormatException e) {
@@ -30,8 +30,7 @@ public class ArgAdd {
             }
         } else if (args.length == 3) {
             try {
-                if (PrizesDatabase.addItem(((Player) sender), Integer.parseInt(args[1]),
-                        Integer.parseInt(args[2]))) {
+                if (PrizesDatabase.addItem(((Player) sender), Integer.parseInt(args[1]), Integer.parseInt(args[2]))) {
                     sender.sendMessage(Lang.ADD_SUCCESS.toString());
                 }
             } catch (final NumberFormatException e) {

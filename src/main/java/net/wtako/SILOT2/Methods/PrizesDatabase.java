@@ -186,7 +186,7 @@ public class PrizesDatabase extends Database {
         final PreparedStatement selStmt1 = Database.getInstance().conn
                 .prepareStatement("SELECT SUM(prob) FROM `prizes` WHERE prize_class = ?");
         selStmt1.setInt(1, prizeClass);
-        int probSum = selStmt1.executeQuery().getInt(1);
+        final int probSum = selStmt1.executeQuery().getInt(1);
         selStmt1.close();
 
         if (probSum == 0) {

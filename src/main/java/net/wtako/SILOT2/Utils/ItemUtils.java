@@ -38,8 +38,7 @@ public class ItemUtils {
         }
         for (final Entry<String, Object> entry: map.entrySet()) {
             if (entry.getValue() instanceof Map
-                    && ((Map<?, ?>) entry.getValue())
-                            .containsKey(ConfigurationSerialization.SERIALIZED_TYPE_KEY)) {
+                    && ((Map<?, ?>) entry.getValue()).containsKey(ConfigurationSerialization.SERIALIZED_TYPE_KEY)) {
                 entry.setValue(ItemUtils.deserialize((Map<String, Object>) entry.getValue()));
             }
         }

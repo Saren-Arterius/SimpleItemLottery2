@@ -30,14 +30,13 @@ public class Database {
 
     public Database() throws SQLException {
         Database.instance = this;
-        final String path = MessageFormat.format("jdbc:sqlite:{0}/{1}", Main.getInstance()
-                .getDataFolder().getAbsolutePath(), Main.getInstance().getName() + ".db");
+        final String path = MessageFormat.format("jdbc:sqlite:{0}/{1}", Main.getInstance().getDataFolder()
+                .getAbsolutePath(), Main.getInstance().getName() + ".db");
         conn = DriverManager.getConnection(path);
     }
 
     private void addConfig(String config, String value) throws SQLException {
-        final PreparedStatement stmt = conn
-                .prepareStatement("INSERT INTO `configs` (`config`, `value`) VALUES (?, ?)");
+        final PreparedStatement stmt = conn.prepareStatement("INSERT INTO `configs` (`config`, `value`) VALUES (?, ?)");
         stmt.setString(1, config);
         stmt.setString(2, value);
         stmt.execute();
@@ -45,8 +44,7 @@ public class Database {
     }
 
     private void changeConfig(String config, String value) throws SQLException {
-        final PreparedStatement stmt = conn
-                .prepareStatement("UPDATE `configs` SET value = ? WHERE config = ?");
+        final PreparedStatement stmt = conn.prepareStatement("UPDATE `configs` SET value = ? WHERE config = ?");
         stmt.setString(1, value);
         stmt.setString(2, config);
         stmt.execute();
@@ -85,8 +83,7 @@ public class Database {
     private void databaseMigrateFrom(int version) throws SQLException {
         switch (version) {
             case 1:
-                final PreparedStatement altStmt = conn
-                        .prepareStatement("ALTER TABLE `prizes` RENAME TO `prizes_old`");
+                final PreparedStatement altStmt = conn.prepareStatement("ALTER TABLE `prizes` RENAME TO `prizes_old`");
                 altStmt.execute();
                 altStmt.close();
 
@@ -101,8 +98,8 @@ public class Database {
                 PreparedStatement insStmt = null;
                 while (result.next()) {
                     try {
-                        final Map<String, String> prizeLoresMap = (Map<String, String>) JSONValue
-                                .parse(result.getString("lore"));
+                        final Map<String, String> prizeLoresMap = (Map<String, String>) JSONValue.parse(result
+                                .getString("lore"));
                         final ItemStack tempItem = new ItemStack(Material.SAND);
                         final ItemMeta itemMeta = tempItem.getItemMeta();
                         final List<String> itemLores = new ArrayList<String>();
