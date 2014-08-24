@@ -56,7 +56,7 @@ public class ItemUtils {
 
     @SuppressWarnings("unchecked")
     public static JSONObject encodeMeta(ItemStack stack) {
-        if (stack == null) {
+        if (stack == null || stack.getType() == Material.AIR) {
             return null;
         }
         final JSONObject metaJson = new JSONObject();
@@ -69,7 +69,7 @@ public class ItemUtils {
 
     @SuppressWarnings("unchecked")
     public static JSONObject encodeItem(ItemStack stack) {
-        if (stack == null) {
+        if (stack == null || stack.getType() == Material.AIR) {
             return null;
         }
         final JSONObject metaJson = new JSONObject();
@@ -88,7 +88,7 @@ public class ItemUtils {
         final JSONObject contentJson = new JSONObject();
         final ArrayList<JSONObject> content = new ArrayList<JSONObject>();
         for (final ItemStack itemStack: items) {
-            content.add(ItemUtils.encodeMeta(itemStack));
+            content.add(ItemUtils.encodeItem(itemStack));
         }
         contentJson.put("content", content);
         return contentJson;
@@ -99,20 +99,24 @@ public class ItemUtils {
         final JSONObject contentJson = new JSONObject();
         final ArrayList<JSONObject> content = new ArrayList<JSONObject>();
         for (final ItemStack itemStack: items) {
-            content.add(ItemUtils.encodeMeta(itemStack));
+            content.add(ItemUtils.encodeItem(itemStack));
         }
         contentJson.put("content", content);
         return contentJson;
     }
 
-    @SuppressWarnings("unchecked")
     public static JSONObject encodeInventory(PlayerInventory inv) {
+        return ItemUtils.encodeInventory(inv.getContents(), inv.getArmorContents());
+    }
+
+    @SuppressWarnings("unchecked")
+    public static JSONObject encodeInventory(ItemStack[] invContents, ItemStack[] armorContents) {
         final JSONObject invJson = new JSONObject();
-        invJson.put("content", ItemUtils.encodeItems(inv.getContents()).get("content"));
-        invJson.put("helmet", ItemUtils.encodeMeta(inv.getHelmet()));
-        invJson.put("chestplate", ItemUtils.encodeMeta(inv.getChestplate()));
-        invJson.put("leggings", ItemUtils.encodeMeta(inv.getLeggings()));
-        invJson.put("boots", ItemUtils.encodeMeta(inv.getBoots()));
+        invJson.put("content", ItemUtils.encodeItems(invContents).get("content"));
+        invJson.put("helmet", ItemUtils.encodeItem(armorContents[0]));
+        invJson.put("chestplate", ItemUtils.encodeItem(armorContents[1]));
+        invJson.put("leggings", ItemUtils.encodeItem(armorContents[2]));
+        invJson.put("boots", ItemUtils.encodeItem(armorContents[3]));
         return invJson;
     }
 
