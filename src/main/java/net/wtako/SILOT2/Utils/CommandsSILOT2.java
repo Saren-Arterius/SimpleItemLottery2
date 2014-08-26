@@ -13,6 +13,7 @@ public enum CommandsSILOT2 implements BaseCommands {
     MAIN_COMMAND(Lang.HELP_HELP.toString(), ArgHelp.class, Main.artifactId + ".use"),
     ADD(Lang.HELP_ADD.toString(), ArgAdd.class, Main.artifactId + ".admin"),
     DEL(Lang.HELP_DELETE.toString(), ArgDel.class, Main.artifactId + ".admin"),
+    DELETE(Lang.HELP_DELETE.toString(), ArgDel.class, Main.artifactId + ".admin"),
     LIST(Lang.HELP_LIST.toString(), ArgList.class, Main.artifactId + ".list"),
     MAKE(Lang.HELP_MAKE.toString(), ArgMake.class, Main.artifactId + ".admin"),
     H(Lang.HELP_HELP.toString(), ArgHelp.class, Main.artifactId + ".use"),

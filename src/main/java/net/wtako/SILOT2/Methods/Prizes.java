@@ -107,7 +107,7 @@ public class Prizes {
             }
             selStmt2 = Database.getConn().prepareStatement(
                     "SELECT * FROM `prizes` WHERE prize_class = ? ORDER BY row_id DESC LIMIT " + rowsLimit.toString()
-                    + " OFFSET ?");
+                            + " OFFSET ?");
             selStmt2.setInt(1, prizeClass);
             selStmt2.setInt(2, (page - 1) * rowsLimit);
             result = selStmt2.executeQuery();
@@ -132,7 +132,7 @@ public class Prizes {
                 final ItemStack item = ItemUtils.restoreItem(itemJson);
                 tableArrayList.add(MessageFormat.format(Lang.LIST_FORMAT1.toString(), result.getInt("row_id"), result
                         .getString("added_by"), item.getAmount(), item.getItemMeta().hasDisplayName() ? item
-                                .getItemMeta().getDisplayName() : item.getType().name(), item.getType().name()));
+                        .getItemMeta().getDisplayName() : item.getType().name(), item.getType().name()));
             } else {
                 tableArrayList.add(MessageFormat.format(Lang.LIST_FORMAT1.toString(), result.getInt("row_id"),
                         result.getString("added_by"), result.getInt("cash"), Lang.MONEY_SIGN.toString(), "MONEY"));
@@ -230,7 +230,7 @@ public class Prizes {
             final FileWriter writer = new FileWriter(new File(Main.getInstance().getDataFolder(), "log.log"), true);
             writer.append(MessageFormat.format(Lang.LOG_FORMAT.toString() + "\r\n",
                     new Date(System.currentTimeMillis()), player.getName(), prizeClass, Lang.MONEY_SIGN.toString()
-                    + cashPrizeAmount.toString()));
+                            + cashPrizeAmount.toString()));
             writer.close();
             player.sendMessage(MessageFormat.format(Lang.YOU_WON_MONEY.toString(), cashPrizeAmount));
         } else {

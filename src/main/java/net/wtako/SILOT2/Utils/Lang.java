@@ -49,22 +49,22 @@ public enum Lang {
     HELP_ADD("&6Hold an item&f on hand, and type &b/" + Main.getInstance().getProperty("mainCommand")
             + " &a{0}&f <&cprize class&f> <&cprobability&f> [&cmoney amount&f] to add it into database. "
             + "&eIf money amount is given, &ccash prize&e will be added instead."),
-            HELP_LIST("Type &b/" + Main.getInstance().getProperty("artifactId").toLowerCase()
-                    + " &a{0}&f [&cprize class&f] [&cpage&f] to view prize list."),
-                    HELP_MAKE("Type &b/" + Main.getInstance().getProperty("mainCommand")
-                            + " &a{0}&f <&cprize class&f> [&camount&f] [&cplayer&f] "
-                            + "to make lottery tickets [&cand give them to a player&f]."),
-                            HELP_DELETE("Type &b/" + Main.getInstance().getProperty("artifactId").toLowerCase()
-                                    + " &a{0}&f &f(&cid 1&f, &cid 2&f, &cid 3&f...) to delete prize rows."),
-                                    PLUGIN_RELOADED("&aPlugin reloaded."),
-                                    DB_EXCEPTION("&4A database error occured! Please contact server administrators."),
-                                    ERROR_HOOKING("&4Error in hooking into {0}! Please contact server administrators."),
-                                    UNKNOWN_ERROR("&4Unknown Error! Please contact server administrators."),
-                                    ECON_NOT_SUPPORTED("&eEconomy system is currently not supported set in config.yml"),
-                                    NO_PERMISSION_HELP(" (&cno permission&f)"),
-                                    NO_PERMISSION_COMMAND("&cYou are not allowed to use this command."),
-                                    NO_PERMISSION_DO("&cYou are not allowed to do this."),
-                                    NO_PERMISSION_CLASS("&cYou are not allowed to use lottery tickets of this class.");
+    HELP_LIST("Type &b/" + Main.getInstance().getProperty("artifactId").toLowerCase()
+            + " &a{0}&f [&cprize class&f] [&cpage&f] to view prize list."),
+    HELP_MAKE("Type &b/" + Main.getInstance().getProperty("mainCommand")
+            + " &a{0}&f <&cprize class&f> [&camount&f] [&cplayer&f] "
+            + "to make lottery tickets [&cand give them to a player&f]."),
+    HELP_DELETE("Type &b/" + Main.getInstance().getProperty("artifactId").toLowerCase()
+            + " &a{0}&f &f(&cid 1&f, &cid 2&f, &cid 3&f...) to delete prize rows."),
+    PLUGIN_RELOADED("&aPlugin reloaded."),
+    DB_EXCEPTION("&4A database error occured! Please contact server administrators."),
+    ERROR_HOOKING("&4Error in hooking into {0}! Please contact server administrators."),
+    UNKNOWN_ERROR("&4Unknown Error! Please contact server administrators."),
+    ECON_NOT_SUPPORTED("&eEconomy system is currently not supported set in config.yml"),
+    NO_PERMISSION_HELP(" (&cno permission&f)"),
+    NO_PERMISSION_COMMAND("&cYou are not allowed to use this command."),
+    NO_PERMISSION_DO("&cYou are not allowed to do this."),
+    NO_PERMISSION_CLASS("&cYou are not allowed to use lottery tickets of this class.");
 
     private String                   path;
     private String                   def;
