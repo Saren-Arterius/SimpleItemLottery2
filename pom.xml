@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>net.wtako</groupId>
 	<artifactId>SILOT2</artifactId>
-	<version>0.0.4a</version>
+	<version>0.0.5</version>
 	<name>SimpleItemLottery2</name>
 	<description>Lottery tickets to item prizes or cash prizes. Supports item meta.</description>
 	<url>https://github.com/Saren-Arterius/SimpleItemLottery2</url>
@@ -11,12 +11,17 @@
 	<properties>
 		<author>Saren</author>
 		<mainClass>Main</mainClass>
+		<mainCommand>silot2</mainCommand>
 	</properties>
 
 	<repositories>
 		<repository>
 			<id>bukkit-repo</id>
 			<url>http://repo.bukkit.org/content/groups/public/</url>
+		</repository>
+		<repository>
+			<id>vault-repo</id>
+			<url>http://nexus.theyeticave.net/content/repositories/pub_releases</url>
 		</repository>
 	</repositories>
 
@@ -25,6 +30,12 @@
 			<groupId>org.bukkit</groupId>
 			<artifactId>bukkit</artifactId>
 			<version>1.7.5-R0.1-SNAPSHOT</version>
+			<type>jar</type>
+		</dependency>
+		<dependency>
+			<groupId>net.milkbowl.vault</groupId>
+			<artifactId>Vault</artifactId>
+			<version>LATEST</version>
 			<type>jar</type>
 		</dependency>
 	</dependencies>

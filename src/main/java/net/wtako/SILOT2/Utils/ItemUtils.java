@@ -113,10 +113,10 @@ public class ItemUtils {
     public static JSONObject encodeInventory(ItemStack[] invContents, ItemStack[] armorContents) {
         final JSONObject invJson = new JSONObject();
         invJson.put("content", ItemUtils.encodeItems(invContents).get("content"));
-        invJson.put("helmet", ItemUtils.encodeItem(armorContents[0]));
-        invJson.put("chestplate", ItemUtils.encodeItem(armorContents[1]));
-        invJson.put("leggings", ItemUtils.encodeItem(armorContents[2]));
-        invJson.put("boots", ItemUtils.encodeItem(armorContents[3]));
+        invJson.put("helmet", ItemUtils.encodeItem(armorContents[3]));
+        invJson.put("chestplate", ItemUtils.encodeItem(armorContents[2]));
+        invJson.put("leggings", ItemUtils.encodeItem(armorContents[1]));
+        invJson.put("boots", ItemUtils.encodeItem(armorContents[0]));
         return invJson;
     }
 

@@ -7,17 +7,22 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import net.wtako.SILOT2.Commands.CommandSilot2;
+import net.milkbowl.vault.economy.Economy;
+import net.wtako.SILOT2.Commands.CommandSILOT2;
 import net.wtako.SILOT2.EventHandlers.ItemUseListener;
 import net.wtako.SILOT2.Methods.Database;
+import net.wtako.SILOT2.Utils.Config;
 import net.wtako.SILOT2.Utils.Lang;
 
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Main extends JavaPlugin {
 
     private static Main             instance;
+    public static Economy           econ;
+    public static String            artifactId;
     public static YamlConfiguration LANG;
     public static File              LANG_FILE;
     public static Logger            log = Logger.getLogger("SILOT2");
@@ -25,17 +30,37 @@ public final class Main extends JavaPlugin {
     @Override
     public void onEnable() {
         Main.instance = this;
-        saveDefaultConfig();
-        getConfig().options().copyDefaults(true);
-        getCommand(Main.getInstance().getProperty("artifactId")).setExecutor(new CommandSilot2());
-        getServer().getPluginManager().registerEvents(new ItemUseListener(), this);
+        Main.artifactId = getProperty("artifactId");
+        getCommand(getProperty("mainCommand")).setExecutor(new CommandSILOT2());
+        Config.saveAll();
         loadLang();
-        try {
-            new Database();
-            Database.getInstance().check();
-        } catch (final SQLException e) {
-            Main.log.severe("When you see this, that means this plugin is screwed.");
-            e.printStackTrace();
+        setupEcon();
+        if (Database.getInstance() == null) {
+            try {
+                new Database();
+            } catch (final SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        getServer().getPluginManager().registerEvents(new ItemUseListener(), this);
+    }
+
+    @Override
+    public void onDisable() {
+        if (Database.getInstance() != null) {
+            try {
+                Database.reset();
+            } catch (final SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void setupEcon() {
+        final RegisteredServiceProvider<Economy> economyProvider = Main.getInstance().getServer().getServicesManager()
+                .getRegistration(net.milkbowl.vault.economy.Economy.class);
+        if (economyProvider != null) {
+            Main.econ = economyProvider.getProvider();
         }
     }
 
@@ -57,7 +82,7 @@ public final class Main extends JavaPlugin {
                 Main.log.severe("[" + Main.getInstance().getName() + "] Couldn't create language file.");
                 Main.log.severe("[" + Main.getInstance().getName() + "] This is a fatal error. Now disabling");
                 setEnabled(false); // Without it loaded, we can't send them
-                                   // messages
+                // messages
             }
         }
         final YamlConfiguration conf = YamlConfiguration.loadConfiguration(lang);
