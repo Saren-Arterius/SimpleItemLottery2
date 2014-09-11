@@ -38,7 +38,7 @@ public class ItemUseListener implements Listener {
                     return;
                 }
                 if (event.getPlayer().getInventory().firstEmpty() == -1) {
-                    event.getPlayer().sendMessage("Your bag was full!");
+                    event.getPlayer().sendMessage(Lang.INVENTORY_IS_FULL.toString());
                     return;
                 }
                 try {

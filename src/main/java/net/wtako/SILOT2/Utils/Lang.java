@@ -36,6 +36,7 @@ public enum Lang {
 
     NO_PRIZE("&eCurrently no prize is added to database."),
     NO_PRIZE_FROM_TICKET("&eThere is still no prize for this class of ticket yet."),
+    INVENTORY_IS_FULL("&eYour inventory is full."),
     CANNOT_ADD_AIR("&cYou cant add air as prize!"),
     MONEY_ERROR("&cCash prize's amount must be greater than 1."),
     VALUE_ERROR("&cValue {0} must be less or equal to {1}."),
