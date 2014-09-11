@@ -37,6 +37,10 @@ public class ItemUseListener implements Listener {
                     event.getPlayer().sendMessage(Lang.NO_PERMISSION_CLASS.toString());
                     return;
                 }
+                if (event.getPlayer().getInventory().firstEmpty() == -1) {
+                    event.getPlayer().sendMessage("Your bag was full!");
+                    return;
+                }
                 try {
                     final Integer randomRow = Prizes.getRandomRowID(prizeClass);
                     if (randomRow == null) {
